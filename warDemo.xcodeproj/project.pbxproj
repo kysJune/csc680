@@ -15,6 +15,7 @@
 		8405719C2B260C85003A43A7 /* warDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405719B2B260C85003A43A7 /* warDemoUITests.swift */; };
 		8405719E2B260C85003A43A7 /* warDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405719D2B260C85003A43A7 /* warDemoUITestsLaunchTests.swift */; };
 		84A338262B26824800544775 /* UnoGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A338252B26824800544775 /* UnoGame.swift */; };
+		84A338282B27825500544775 /* UnoGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A338272B27825500544775 /* UnoGameModel.swift */; };
 		84B792302B264BAD000B8F7E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84B7922F2B264BAD000B8F7E /* Launch Screen.storyboard */; };
 		84B792322B265A33000B8F7E /* HomeScreen'.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B792312B265A33000B8F7E /* HomeScreen'.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,7 @@
 		8405719B2B260C85003A43A7 /* warDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = warDemoUITests.swift; sourceTree = "<group>"; };
 		8405719D2B260C85003A43A7 /* warDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = warDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		84A338252B26824800544775 /* UnoGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnoGame.swift; sourceTree = "<group>"; };
+		84A338272B27825500544775 /* UnoGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnoGameModel.swift; sourceTree = "<group>"; };
 		84B7922F2B264BAD000B8F7E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		84B792312B265A33000B8F7E /* HomeScreen'.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeScreen'.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,13 +102,14 @@
 		8405717F2B260C82003A43A7 /* warDemo */ = {
 			isa = PBXGroup;
 			children = (
-				840571802B260C82003A43A7 /* warDemoApp.swift */,
-				840571822B260C82003A43A7 /* GameScreen.swift */,
 				84B7922F2B264BAD000B8F7E /* Launch Screen.storyboard */,
+				840571802B260C82003A43A7 /* warDemoApp.swift */,
+				84B792312B265A33000B8F7E /* HomeScreen'.swift */,
+				840571822B260C82003A43A7 /* GameScreen.swift */,
+				84A338252B26824800544775 /* UnoGame.swift */,
+				84A338272B27825500544775 /* UnoGameModel.swift */,
 				840571842B260C85003A43A7 /* Assets.xcassets */,
 				840571862B260C85003A43A7 /* Preview Content */,
-				84B792312B265A33000B8F7E /* HomeScreen'.swift */,
-				84A338252B26824800544775 /* UnoGame.swift */,
 			);
 			path = warDemo;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A338282B27825500544775 /* UnoGameModel.swift in Sources */,
 				84A338262B26824800544775 /* UnoGame.swift in Sources */,
 				840571832B260C82003A43A7 /* GameScreen.swift in Sources */,
 				840571812B260C82003A43A7 /* warDemoApp.swift in Sources */,
