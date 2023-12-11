@@ -69,8 +69,30 @@ struct GameScreen: View {
                 .padding(.top, 30)
                 Spacer()
                 
+                var myPlayer = model.Players[2]
+                //info box
+                ZStack{
+                    Rectangle()
+                        .foregroundColor(Color.white)
+                    HStack{
+                        let play = myPlayer.Hand.filter{$0.selected==true}
+                        if (play.count != 1){
+                            Text("Please Select 1 Card\n")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        Button("PLAY CARD"){
+                            if (play.count == 1){
+                                if(model.play(play[0], in: &myPlayer)==false){
+                                    
+                                }
+                            }
+                        }
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                    }
+                }
+                .frame(height: 50)
+                
                 //player hand display
-                let myPlayer = model.Players[2]
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: -77)]){
                     ForEach(myPlayer.Hand){card in
                         HandView(cardName: card.filename)
@@ -81,17 +103,6 @@ struct GameScreen: View {
                             }
                     }
                 }
-                //info box
-                ZStack{
-                    Rectangle()
-                        .foregroundColor(Color.white)
-                    
-                    let play = model.Players[2].Hand.filter{$0.selected==true}
-                    if (play.count != 1){
-                        Text("Please Select 1 Card \n")
-                    }
-                }
-                .frame(height: 50)
                 
                 Button("QUIT"){
                     appState.screenNumber = 0

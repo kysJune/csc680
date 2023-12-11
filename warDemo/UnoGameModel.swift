@@ -22,7 +22,9 @@ class UnoGameModel: ObservableObject{
         model.select(card, in: player)
     }
     
-//    func play(_ card: Card, in player: Player) -> Bool{
-//        return model.play(card, in: player)
-//    }
+    func play(_ card: Card, in player: inout Player) -> Bool{
+        return model.play(card, in: player)
+    }
 }
+
+

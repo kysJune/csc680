@@ -37,6 +37,7 @@ struct Player: Identifiable {
     
     var Hand = Stack()
     var isMe = false
+    var active = false
 }
 
 struct Deck {
@@ -73,10 +74,23 @@ struct Deck {
 struct Uno {
     private(set) var players: [Player]
     var topCards = Stack()
+    var deck = Deck()
+    
+    private var activePlayer: Player {
+        var player = Player()
+        
+        if let activePlayerIndex = players.firstIndex(where: {$0.id == player.id}){
+            player = players[activePlayerIndex]
+        } else {
+            if let humanIndex = players.firstIndex(where: {$0.isMe == true}){
+                player = players[humanIndex]
+            }
+        }
+        return player
+    }
     
     init() {
         //initializing Deck---------------
-        var deck = Deck()
         deck.createDeck()
         deck.shuffle()
         
@@ -103,6 +117,9 @@ struct Uno {
         topCards.append(deck.drawCard()!)
         topCards.append(deck.drawCard()!)
         topCards.append(deck.drawCard()!)
+        while(topCards[0].rank == 13){
+            topCards[0] = deck.drawCard()!
+        }
     }
     
     mutating func select(_ card: Card, in player: Player){
@@ -112,19 +129,45 @@ struct Uno {
             }
         }
     }
+
+    mutating func play(_ card: Card, in player: Player) -> Bool{
+        if (card.suit == topCards[0].suit || card.rank == topCards[0].rank){
+            topCards[2] = topCards[1]
+            topCards[1] = topCards[0]
+            topCards[0] = card
+            if let playerIndex = players.firstIndex(where: {$0.id == player.id}){
+                players[playerIndex].Hand = players[playerIndex].Hand.filter{$0.selected != true}
+            }
+            //player.Hand = player.Hand.filter{$0.selected == false}
+            return true
+        }
+        return false
+    }
     
-//    mutating func play(_ card: Card, in player: Player) -> Bool{
-//        if (card.suit == top3[0].suit || card.rank == top3[0].rank){
-//            top3[2] = top3[1]
-//            top3[1] = top3[0]
-//            top3[0] = card
-//            return true
-//        }
-//        return false
-//    }
+    mutating func activatePlayer(_ player: Player){
+        if let playerIndex = players.firstIndex(where: {$0.id == player.id}){
+            players[playerIndex].active = true
+            
+            if (!players[playerIndex].isMe){
+                cpuPlay(players[playerIndex])
+            }
+        }
+    }
+    
+    mutating func cpuPlay(_ player: Player){
+        if let playerIndex = players.firstIndex(where: {$0.id == player.id}){
+            for card in players[playerIndex].Hand{
+                if (play(card, in: player)){
+                    return
+                }
+            }
+            
+            //draws card if none of the cards in hand are playable
+            players[playerIndex].Hand.append(deck.drawCard()!)
+            //play(players[playerIndex].Hand.last!, in: player)
+        }
+    }
 }
-
-
 //testing
 var testPlayers = [
     Player(),
